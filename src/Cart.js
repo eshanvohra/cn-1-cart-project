@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import CartItem from './CartItem'
+import Navbar from './Navbar';
+
 
 const Cart=()=>{
 
@@ -33,7 +35,7 @@ console.log(product);
 
 const p=AllItems.find(a=> a.id===product.id)
 
-console.log(p.id);
+// console.log(p.id);
 
 p.Qty++;
 
@@ -45,8 +47,8 @@ const newArr=AllItems.map((element)=>{
         return element;
     }
 });
-console.log(newArr);
-console.log(AllItems);
+// console.log(newArr);
+// console.log(AllItems);
 
  setItems([...newArr]);
 
@@ -59,7 +61,7 @@ const handleDecrease=(product)=>{
     
     const p=AllItems.find(a=> a.id===product.id)
     
-    console.log(p.id);
+    // console.log(p.id);
     p.Qty=p.Qty>1?p.Qty-1:1;
     
     const newArr=AllItems.map((element)=>{
@@ -70,48 +72,37 @@ const handleDecrease=(product)=>{
             return element;
         }
     });
-    console.log(newArr);
-    console.log(AllItems);
+    // console.log(newArr);
+    // console.log(AllItems);
     
      setItems([...newArr]);
     
      
     
     }
-    
+ const cartTotal=()=>{
+     const selected=AllItems;
+    let cartCount=0;
+     selected.map((product)=>{
+         cartCount+=product.Qty*product.price;
+     })
+     return (cartCount);
+ }   
+
 const handleDelete=(product)=>{
     const p=AllItems.find(a=> a.id===product.id);
     const newArr=AllItems.filter((element)=>element.id!=p.id);
     setItems([...newArr]);
+    
 }
 
-
-// const handleIncrease=(product)=>{
-// console.log("Hwy please increase thequantity of product",product);
-// // var foundItem = Items.find(x => x.id == productid);
-// // console.log(foundItem.title);
-
-// // setItems({
-// //     ...AllItems,
-
-// // })
-// const index=(AllItems.findIndex(i => i.id === product.id));
-
-// AllItems[index].Qty+=1;
-// console.log(AllItems);
-// // setItems(AllItems);
-// console.log(Items);
-// // Items=[...AllItems,Items[index].Qty+=1];
-// // console.log(AllItems);
-// // const index=Items.indexOf(product);
-// // console.log(index);
-// // products[index].Qty+=1;
- 
-
-// }
+const num=AllItems.length;
 
         return (
+            <>
+            <Navbar count={num}/>
             <div className='cart'>
+           
 
 {
    
@@ -124,9 +115,9 @@ const handleDelete=(product)=>{
                 )
     })
 }
-               
+               <div style={{fontSize:20,padding:10}}>cart total {cartTotal()}</div>
                 
-            </div>
+            </div></>
         )
     }
 
