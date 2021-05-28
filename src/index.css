@@ -26,4 +26,7 @@ body {
     cursor: pointer;
     border:2px solid black;
   }
-  
+  .cart{
+    display:flex;
+    flex-direction: column;
+  }
