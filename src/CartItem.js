@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import './index.css';
-const CartItem=()=>{
+const CartItem=(props)=>{
+
+    // const {cost,name,Qt}=props;
+    console.log(props);
     const [cartItem,setItem]=useState({
-        price:100,
-        title:"Phone",
-        Qty:12,
+        price:props.price,
+        title:props.title,
+        Qty:props.Qty,
+       
         img:'https://image.flaticon.com/icons/png/512/3020/3020657.png'
     })
     const {price,title,Qty,img}=cartItem;
